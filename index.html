@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爆米花科學探究檢核與迷思測驗系統</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    /* 自訂滾動條 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f8fafc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-amber-50/40 text-slate-800 min-h-screen flex flex-col font-sans antialiased">
+
+  <header class="bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700 text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl filter drop-shadow">🍿</span>
+        <div>
+          <h1 class="text-lg sm:text-xl font-bold tracking-wide flex items-center gap-2">
+            爆米花原理：科學探究檢核與迷思挑戰
+            <span class="text-[11px] bg-amber-800/60 px-2.5 py-0.5 rounded-full border border-amber-300/40 font-normal">
+              互動自主學習
+            </span>
+          </h1>
+          <p class="text-xs text-amber-100 hidden sm:block">
+            搜尋探究 ➔ 打字關鍵詞檢核 ➔ 1~5星診斷 ➔ 迷思概念大挑戰（隨機4題）
+          </p>
+        </div>
+      </div>
+
+      <!-- 導覽切換標籤 -->
+      <nav class="flex items-center bg-black/20 p-1 rounded-xl backdrop-blur-sm gap-1">
+        <button id="nav-guide-btn" onclick="switchTab('guide')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 text-amber-100 hover:text-white">
+          <span>🔍</span> 探究指引錦囊
+        </button>
+        <button id="nav-chat-btn" onclick="switchTab('chat')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 bg-white text-amber-900 shadow-sm">
+          <span>🤖</span> 第一關：機器人檢核
+        </button>
+        <button id="nav-quiz-btn" onclick="switchTab('quiz')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 text-amber-100 hover:text-white">
+          <span>🎯</span> 第二關：迷思測驗 (4題)
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 space-y-6">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: 探究背景錦囊 (Search Guide)          -->
+    <!-- ========================================== -->
+    <section id="tab-guide" class="space-y-6 hidden animate-fadeIn">
+      <div class="bg-white border border-amber-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center gap-2 text-amber-800 font-bold text-base sm:text-lg mb-3">
+          <span class="text-xl">💡</span>
+          學生自主搜尋探究指引：爆米花的爆裂物理學
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+          請先在搜尋引擎中搜尋關鍵字：<strong>「爆米花原理」、「爆米花 水分 澱粉 壓力」</strong>。閱讀資料時，請特別觀察以下五大核心環節，並準備用自己的話彙整給檢核機器人！
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="bg-amber-50/80 p-4 rounded-xl border border-amber-200">
+            <div class="font-bold text-amber-900 flex items-center gap-1.5 mb-2">
+              <span class="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-xs">1</span>
+              堅硬外殼（緻密種皮）
+            </div>
+            <p class="text-slate-700 leading-relaxed">
+              專用爆米花玉米具有極厚實緻密的防水外殼，能承受極高氣壓，相當於微型的密閉壓力鍋。
+            </p>
+          </div>
+
+          <div class="bg-amber-50/80 p-4 rounded-xl border border-amber-200">
+            <div class="font-bold text-amber-900 flex items-center gap-1.5 mb-2">
+              <span class="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-xs">2</span>
+              水分汽化與超高蓄壓
+            </div>
+            <p class="text-slate-700 leading-relaxed">
+              內部含有 13.5%~14% 黃金水分，加熱到約 180°C 時汽化為高壓水蒸氣，累積高達 9 個大氣壓。
+            </p>
+          </div>
+
+          <div class="bg-amber-50/80 p-4 rounded-xl border border-amber-200">
+            <div class="font-bold text-amber-900 flex items-center gap-1.5 mb-2">
+              <span class="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-xs">3</span>
+              澱粉糊化與瞬間冷卻
+            </div>
+            <p class="text-slate-700 leading-relaxed">
+              高溫使胚乳澱粉糊化成熔融泡沫。外殼炸裂瞬間蒸氣衝出，遇冷空氣數毫秒內冷卻固化成香脆白花。
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-end">
+          <button onclick="switchTab('chat')" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl text-xs sm:text-sm flex items-center gap-2 shadow-sm transition-all">
+            我閱讀完成了，前往打字檢核 ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: 第一關 機器人檢核 (Chatbot & Rubrics) -->
+    <!-- ========================================== -->
+    <section id="tab-chat" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start animate-fadeIn">
+      
+      <!-- 對話面板 -->
+      <div class="lg:col-span-8 bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col h-[630px] overflow-hidden">
+        
+        <!-- 對話頂部狀態列 -->
+        <div class="bg-slate-50 px-5 py-3 border-b border-slate-200 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-inner">
+              🤖
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm">爆米花科學評估導師</h3>
+              <p class="text-[11px] text-slate-500">關鍵概念判讀與 1～5 星審查系統</p>
+            </div>
+          </div>
+
+          <!-- 星級徽章顯示區 -->
+          <div id="chat-header-star-badge" class="hidden items-center gap-1.5 bg-amber-100 text-amber-900 px-3 py-1 rounded-full text-xs font-bold">
+            <span>獲得評核：</span>
+            <span id="chat-header-stars" class="text-amber-600 font-bold tracking-tight"></span>
+          </div>
+        </div>
+
+        <!-- 對話訊息串 -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 text-sm">
+          <!-- 機器人歡迎詞 -->
+          <div class="flex justify-start">
+            <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mr-2 shrink-0 mt-1 shadow-sm">
+              🤖
+            </div>
+            <div class="max-w-[85%] rounded-2xl p-4 text-sm leading-relaxed shadow-sm bg-white border border-slate-200 text-slate-800 rounded-tl-none">
+              <p class="font-bold text-amber-900 mb-1">哈囉探究小科學家！🍿 歡迎來到檢核站。</p>
+              <p>請先閱讀或搜尋「爆米花原理」，接著在下方用自己的話打字告訴我：</p>
+              <div class="bg-amber-50 border border-amber-200/80 rounded-xl p-2.5 my-2 font-medium text-amber-950 text-xs">
+                「爆米花為什麼會爆開？又是如何變成白色香脆花朵的呢？」
+              </div>
+              <p class="text-xs text-slate-600">我會仔細檢查你有沒有提到核心關鍵概念，並給予 <strong>1～5 顆星科學評分</strong> 與改進建議喔！</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 輸入面板 -->
+        <div class="p-3 border-t border-slate-200 bg-white">
+          <form id="chat-form" onsubmit="handleChatSubmit(event)" class="flex gap-2">
+            <textarea
+              id="student-input"
+              rows="2"
+              placeholder="請在此打字輸入你整理的爆米花原理（例如：堅硬外殼、內部水分受熱成高壓水蒸氣、澱粉糊化後瞬間爆開冷卻...）"
+              class="flex-1 border border-slate-300 rounded-xl p-2.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none leading-relaxed"
+              onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"
+            ></textarea>
+            <button
+              type="submit"
+              id="submit-btn"
+              class="px-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl flex flex-col items-center justify-center text-xs font-semibold transition-all shadow-sm shrink-0"
+            >
+              <span class="text-base">🚀</span>
+              <span>送出檢核</span>
+            </button>
+          </form>
+          <div class="flex justify-between items-center mt-2 px-1 text-[11px] text-slate-400">
+            <span>💡 提示：越清楚說明外殼、水分蒸氣、蓄壓與澱粉變化，星級越高！</span>
+            <span>按 Enter 送出</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側：評分標準與檢核狀態規準面板 -->
+      <div class="lg:col-span-4 space-y-4">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-1.5">
+              <span>🏆</span> 科學檢核規準（1～5 星）
+            </h4>
+            <span id="star-display-badge" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+              等待輸入中
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+            系統會分析你的輸入內容，檢測是否涵蓋以下五大關鍵科學面向：
+          </p>
+
+          <div id="rubric-list" class="space-y-2.5 text-xs">
+            <!-- 概念 1 -->
+            <div id="concept-hull" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold flex items-center gap-1.5">
+                  <span class="icon text-xs">⚪</span> 1. 堅硬外殼 / 密閉種皮
+                </span>
+                <span class="badge text-[10px] px-1.5 py-0.5 rounded bg-slate-200 font-mono">未達成</span>
+              </div>
+              <p class="text-[11px] text-slate-500 pl-4 leading-normal">
+                像高壓鍋般緊緊封鎖水蒸氣，能承受高壓不提前漏氣。
+              </p>
+            </div>
+
+            <!-- 概念 2 -->
+            <div id="concept-water" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold flex items-center gap-1.5">
+                  <span class="icon text-xs">⚪</span> 2. 內部水分與高溫水蒸氣
+                </span>
+                <span class="badge text-[10px] px-1.5 py-0.5 rounded bg-slate-200 font-mono">未達成</span>
+              </div>
+              <p class="text-[11px] text-slate-500 pl-4 leading-normal">
+                含水量約 13%~14%，加熱時液態水汽化提供強大爆裂動力。
+              </p>
+            </div>
+
+            <!-- 概念 3 -->
+            <div id="concept-pressure" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold flex items-center gap-1.5">
+                  <span class="icon text-xs">⚪</span> 3. 高溫高壓蓄積 (約180°C/9氣壓)
+                </span>
+                <span class="badge text-[10px] px-1.5 py-0.5 rounded bg-slate-200 font-mono">未達成</span>
+              </div>
+              <p class="text-[11px] text-slate-500 pl-4 leading-normal">
+                密閉受熱使得蒸氣壓力急遽升高，達外殼極限才會炸裂。
+              </p>
+            </div>
+
+            <!-- 概念 4 -->
+            <div id="concept-starch" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold flex items-center gap-1.5">
+                  <span class="icon text-xs">⚪</span> 4. 胚乳澱粉糊化成膠狀泡沫
+                </span>
+                <span class="badge text-[10px] px-1.5 py-0.5 rounded bg-slate-200 font-mono">未達成</span>
+              </div>
+              <p class="text-[11px] text-slate-500 pl-4 leading-normal">
+                白色花朵實質是澱粉，高溫吸水糊化，被高壓氣流吹出。
+              </p>
+            </div>
+
+            <!-- 概念 5 -->
+            <div id="concept-cooling" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-semibold flex items-center gap-1.5">
+                  <span class="icon text-xs">⚪</span> 5. 破裂降壓與瞬間冷卻固化
+                </span>
+                <span class="badge text-[10px] px-1.5 py-0.5 rounded bg-slate-200 font-mono">未達成</span>
+              </div>
+              <p class="text-[11px] text-slate-500 pl-4 leading-normal">
+                炸開失壓噴發，遇到空氣在數毫秒內驟冷凝固定型為脆花。
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-200 flex flex-col gap-2">
+            <button
+              onclick="switchTab('quiz')"
+              class="w-full py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm flex items-center justify-center gap-1.5"
+            >
+              <span>前往第二關：迷思概念測驗</span> ➔
+            </button>
+            <p class="text-[11px] text-center text-slate-400">
+              若未達 5 星，可依提示在左方重新打字挑戰滿星！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: 第二關 迷思概念測驗 (Quiz)           -->
+    <!-- ========================================== -->
+    <section id="tab-quiz" class="space-y-6 hidden animate-fadeIn">
+      
+      <!-- 測驗標頭控制區 -->
+      <div class="bg-white border border-amber-200 rounded-2xl p-5 shadow-sm flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2">
+            <span>🎯</span> 爆米花原理迷思概念大挑戰
+            <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-0.5 rounded-full">
+              隨機抽取 4 題
+            </span>
+          </h3>
+          <p class="text-xs text-slate-500 mt-1">
+            本測驗選項字數均勻平衡，具有極高誘答力。請仔細思考、破解科學迷思！
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            onclick="regenerateQuiz()"
+            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-xs"
+            title="點擊後將從題庫中重新隨機挑選 4 題"
+          >
+            <span>🔄</span> 重新抽取 4 題
+          </button>
+        </div>
+      </div>
+
+      <!-- 題目渲染清單容器 -->
+      <div id="quiz-container" class="space-y-5">
+        <!-- 由 JavaScript 動態生成 4 題 -->
+      </div>
+
+      <!-- 交卷與成績回饋區 -->
+      <div id="quiz-result-card" class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col items-center justify-center text-center">
+        <!-- 未交卷狀態 -->
+        <div id="quiz-unsubmitted" class="space-y-3 max-w-md w-full">
+          <p id="quiz-progress-text" class="text-xs text-slate-500">
+            請完成全部 4 道題目後交卷
+          </p>
+          <button
+            id="quiz-submit-btn"
+            onclick="submitQuiz()"
+            disabled
+            class="w-full py-3 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 bg-slate-200 text-slate-400 cursor-not-allowed"
+          >
+            <span>✅</span> 交卷並查看答對百分比與迷思解析
+          </button>
+        </div>
+
+        <!-- 已交卷結果狀態 -->
+        <div id="quiz-submitted-view" class="hidden space-y-4 max-w-xl w-full">
+          <div id="quiz-score-circle" class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-amber-100 text-amber-800 text-2xl font-black shadow-inner">
+            0%
+          </div>
+
+          <div>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-800">
+              測驗完成！你的答對率為：<span id="quiz-score-text" class="text-amber-600 font-extrabold">0%</span>
+            </h3>
+            <p id="quiz-detail-counts" class="text-xs text-slate-500 mt-1">
+              共答對 0 / 4 題
+            </p>
+          </div>
+
+          <!-- 正向鼓勵激勵卡片 -->
+          <div id="quiz-praise-banner" class="p-4 rounded-xl border text-xs sm:text-sm text-left leading-relaxed">
+            <!-- 動態插入溫暖鼓勵文字 -->
+          </div>
+
+          <!-- 動作按鈕 -->
+          <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <button
+              onclick="regenerateQuiz()"
+              class="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-all shadow-sm flex items-center gap-2"
+            >
+              <span>🔄</span> 重新抽取 4 題重複練習
+            </button>
+            <button
+              onclick="switchTab('chat')"
+              class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold rounded-xl transition-all flex items-center gap-2"
+            >
+              回第一關加強打字檢核
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 底部版權宣告 -->
+  <footer class="mt-auto border-t border-slate-200 bg-white/80 py-4 text-center text-xs text-slate-400">
+    🍿 爆米花科學探究與迷思澄清學習系統 • 探究與實作自主學習評估模組
+  </footer>
+
+  <script>
+    /* ===================================================
+       1. 迷思概念測驗題庫 (共8題，隨機挑選4題)
+          每題選項字數均嚴格平衡在 20 字左右，消除字長猜題破綻
+       =================================================== */
+    const QUESTION_BANK = [
+      {
+        id: 1,
+        title: "玉米粒品種迷思",
+        question: "日常生活中我們吃的香甜玉米或糯玉米，曬乾後直接加熱也能爆成大朵爆米花嗎？為什麼？",
+        options: [
+          { text: "可以，只要高溫加熱水分蒸發便能全面爆發", isCorrect: false },
+          { text: "可以，所有玉米品種只要加高溫均會順利爆開", isCorrect: false },
+          { text: "不行，一般玉米外殼太薄無法蓄積足夠高氣壓", isCorrect: true },
+          { text: "不行，一般玉米含有過多油脂會阻礙澱粉膨脹", isCorrect: false }
+        ],
+        misconception: "【迷思破解】並非所有玉米都能爆！專用「爆米花玉米」具有極其堅硬緻密的硬質外殼（種皮），能像高壓鍋一樣封鎖水蒸氣直到壓力達 9~10 大氣壓；普通食用玉米種皮太薄脆，蒸氣早早就漏光了，無法形成巨大爆發力。"
+      },
+      {
+        id: 2,
+        title: "玉米粒內部水分迷思",
+        question: "想要爆出顆粒大且飽滿鬆脆的爆米花，玉米粒內部的含水量應該維持在多少最理想？",
+        options: [
+          { text: "水分越少越好，最好完全乾燥才容易快速熟透", isCorrect: false },
+          { text: "約維持百分之十三至十四，方能提供充足蒸氣", isCorrect: true },
+          { text: "水分越多越好，充分浸泡清水才能具強膨脹力", isCorrect: false },
+          { text: "含水量沒有影響，主要是胚乳內的空氣受熱膨脹", isCorrect: false }
+        ],
+        misconception: "【迷思破解】水分不是越少越好，也不是越多越好！若含水過低（<10%），沒有足夠水蒸氣蓄壓而形成「未爆彈」；若含水過多，種皮會提早軟化破裂，澱粉無法充分起泡。13.5%~14% 是科學家測出的黃金比例。"
+      },
+      {
+        id: 3,
+        title: "爆開物理動力來源迷思",
+        question: "爆米花由一顆小硬粒瞬間「啪」一聲爆開並體積劇增，最核心的物理驅動力是什麼？",
+        options: [
+          { text: "玉米胚乳中油脂沸騰所引發的劇烈劇烈燃燒反應", isCorrect: false },
+          { text: "內部微量液態水轉變成超高壓水蒸氣之巨大推力", isCorrect: true },
+          { text: "玉米粒縫隙中乾燥空氣受熱依查理定律急遽膨脹", isCorrect: false },
+          { text: "外殼表皮的植物纖維受熱碳化向外急速彈開散落", isCorrect: false }
+        ],
+        misconception: "【迷思破解】爆開的力量既不是來自空氣，也不是油脂燃燒，而是「液態水轉變成氣態水蒸氣」！水在氣化時體積可擴大上千倍，在密閉堅硬的種皮內形成巨大高壓（約 135~180 psi），破裂瞬間釋放強大推力。"
+      },
+      {
+        id: 4,
+        title: "白色海綿狀結構本質",
+        question: "爆米花爆開後所看到的蓬鬆白色結構，它的實質化學成分與形成過程是什麼？",
+        options: [
+          { text: "玉米胚芽被高溫燒成白色灰燼在空中急速凝結成型", isCorrect: false },
+          { text: "澱粉受熱糊化成熔融泡沫，瞬間降壓冷卻固化成型", isCorrect: true },
+          { text: "玉米粒內蛋白質遇熱變性凝固所形成的立體蛋白霜", isCorrect: false },
+          { text: "鍋中添加的糖與牛油在高溫翻滾產生的焦糖氣泡霜", isCorrect: false }
+        ],
+        misconception: "【迷思破解】白色部分是玉米胚乳中的「澱粉」！高溫高壓下，原本結實的硬質澱粉吸水熔融成濃稠流體（糊化）；當種皮炸裂時，超高壓水蒸氣急遽衝出將糊化澱粉吹成泡沫狀，遇到外界冷空氣在幾毫秒內冷卻固化成香脆的白色泡泡。"
+      },
+      {
+        id: 5,
+        title: "未爆彈（啞巴豆）的成因",
+        question: "鍋底常常剩下幾顆完全沒爆開的「硬玉米粒」（俗稱未爆彈），最常見的科學原因為何？",
+        options: [
+          { text: "加熱時間過長導致內部澱粉提早硬化而無法舒展開", isCorrect: false },
+          { text: "外殼有細微裂紋致蒸氣外洩，無法蓄積足夠高氣壓", isCorrect: true },
+          { text: "這幾顆玉米粒內部含有過多水分因而過度壓抑溫度", isCorrect: false },
+          { text: "玉米粒受到鍋鏟過度撞擊導致內部晶體結構嚴重錯位", isCorrect: false }
+        ],
+        misconception: "【迷思破解】未爆彈通常有兩個元凶：一是「外殼有裂縫或微孔」，水蒸氣在加熱過程中悄悄溜走，壓力無法累積；二是「種子本身過於乾枯（水分低於10%）」，產生的氣壓不足以炸開厚皮。"
+      },
+      {
+        id: 6,
+        title: "加熱溫度與爆裂臨界點",
+        question: "科學實驗顯示，爆米花玉米粒通常在哪個溫度區間會達到破裂臨界點而爆開？",
+        options: [
+          { text: "達到水沸點攝氏一百度時，內部壓力失衡即全面爆裂", isCorrect: false },
+          { text: "約在攝氏一百八十度左右，內部氣壓達九個大氣壓時", isCorrect: true },
+          { text: "必須在攝氏三百度以上的超高溫炭火翻炒下才會反應", isCorrect: false },
+          { text: "只要鍋內油溫加熱達到攝氏六十度時即可促成全面爆開", isCorrect: false }
+        ],
+        misconception: "【迷思破解】因為玉米種皮強韌耐壓，內部水分子在達到 100°C 時無法自由沸騰（如同壓力鍋）。直到溫度攀升到約 180°C 左右，內部水蒸氣壓力積聚至約 9.3 個大氣壓，超過外殼承受極限才會炸裂！"
+      },
+      {
+        id: 7,
+        title: "微波爐專用紙袋的秘密",
+        question: "市售微波爆米花紙袋底部通常有一塊深灰色的特殊薄片（感受體），其關鍵作用是？",
+        options: [
+          { text: "吸收微波轉為高傳導熱，讓玉米粒迅速且均勻達到高溫", isCorrect: true },
+          { text: "阻擋微波進入玉米粒內部，以保護各項維生素不被破壞", isCorrect: false },
+          { text: "防止水蒸氣透過紙袋滲漏出去，以維持紙袋內部超高氣壓", isCorrect: false },
+          { text: "釋放特殊化學氣體，催化玉米胚乳中的澱粉在低溫下熟化", isCorrect: false }
+        ],
+        misconception: "【迷思破解】微波袋底部的金屬化薄片稱為「感受體（Susceptor）」，它能吸收微波輻射並迅速轉化為極高溫的傳導熱（超過 200°C），模擬熱油鍋底傳熱，讓玉米粒迅速達到臨界爆裂溫度，減少未爆粒。"
+      },
+      {
+        id: 8,
+        title: "烹調油脂的真實物理角色",
+        question: "爆爆米花時加入奶油或沙拉油，從物理熱傳遞的角度來看，最主要的功能是什麼？",
+        options: [
+          { text: "油脂滲透進玉米粒內部，取代水分成為主要的膨脹動力", isCorrect: false },
+          { text: "包覆玉米粒均勻傳遞熱量，避免受熱不均造成局部烤焦", isCorrect: true },
+          { text: "軟化玉米堅硬外殼，讓內部空氣在較低溫時即可突破外殼", isCorrect: false },
+          { text: "與胚乳澱粉產生化學交聯反應，以凝結出更多白色酥脆花", isCorrect: false }
+        ],
+        misconception: "【迷思破解】熱風機不加油其實也能爆米花！油的主要物理任務是「熱傳導介質」，液態油貼合玉米粒凹凸不平的表面，將鍋底熱量快速且均勻傳遍整顆玉米，避免局部烤焦，香氣與風味則是加分項。"
+      }
+    ];
+
+    /* ===================================================
+       2. 關鍵概念評估規準定義 (5大維度)
+       =================================================== */
+    const KEY_CONCEPTS = [
+      {
+        id: 'hull',
+        domId: 'concept-hull',
+        name: '堅硬外殼 / 密閉種皮',
+        keywords: ['外殼', '種皮', '堅硬', '硬殼', '外皮', '密閉', '包裹', '耐壓', '厚皮', '厚殼'],
+        advice: '試著說明專用玉米的「堅硬外殼（緻密種皮）」如何扮演像壓力鍋一樣封存蒸氣的角色！'
+      },
+      {
+        id: 'water',
+        domId: 'concept-water',
+        name: '內部水分與水蒸氣',
+        keywords: ['水分', '水氣', '水蒸氣', '蒸氣', '含水量', '汽化', '13%', '14%'],
+        advice: '別忘了提及玉米內部蘊藏的「水分」在受熱時會轉變成體積膨脹千倍的「水蒸氣」！'
+      },
+      {
+        id: 'pressure',
+        domId: 'concept-pressure',
+        name: '高溫蓄壓 (約180°C/9氣壓)',
+        keywords: ['壓力', '蓄壓', '高壓', '累積', '膨脹', '受熱', '加熱', '溫度', '180', '大氣壓', '臨界'],
+        advice: '請說明在密閉外殼中受熱，「內部氣壓急遽累積上升（達約9大氣壓）」的關鍵過程。'
+      },
+      {
+        id: 'starch',
+        domId: 'concept-starch',
+        name: '澱粉糊化成膠狀流體',
+        keywords: ['澱粉', '糊化', '軟化', '融化', '胚乳', '膠狀', '濃稠', '泡沫'],
+        advice: '爆米花白白膨鬆的本質是胚乳中的「澱粉」，高溫吸水糊化為流體泡沫。'
+      },
+      {
+        id: 'cooling',
+        domId: 'concept-cooling',
+        name: '破裂噴發與冷卻固化',
+        keywords: ['爆開', '炸裂', '破裂', '冷卻', '固化', '凝固', '噴出', '吹出', '瞬間', '定型'],
+        advice: '請補充說明外殼承受不住而「爆開」時，噴出的澱粉泡沫遇到空氣「瞬間冷卻定型」。'
+      }
+    ];
+
+    // 全域狀態變數
+    let currentQuizList = [];
+    let userQuizAnswers = {}; // { 0: optionIndex, ... }
+    let isQuizSubmitted = false;
+    let isEvaluating = false;
+
+    /* ===================================================
+       3. 頁籤切換邏輯
+       =================================================== */
+    function switchTab(tabName) {
+      document.getElementById('tab-guide').classList.add('hidden');
+      document.getElementById('tab-chat').classList.add('hidden');
+      document.getElementById('tab-quiz').classList.add('hidden');
+
+      const guideBtn = document.getElementById('nav-guide-btn');
+      const chatBtn = document.getElementById('nav-chat-btn');
+      const quizBtn = document.getElementById('nav-quiz-btn');
+
+      const inactiveClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 text-amber-100 hover:text-white';
+      const activeClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 bg-white text-amber-900 shadow-sm';
+
+      guideBtn.className = inactiveClass;
+      chatBtn.className = inactiveClass;
+      quizBtn.className = inactiveClass;
+
+      if (tabName === 'guide') {
+        document.getElementById('tab-guide').classList.remove('hidden');
+        guideBtn.className = activeClass;
+      } else if (tabName === 'chat') {
+        document.getElementById('tab-chat').classList.remove('hidden');
+        chatBtn.className = activeClass;
+      } else if (tabName === 'quiz') {
+        document.getElementById('tab-quiz').classList.remove('hidden');
+        quizBtn.className = activeClass;
+      }
+    }
+
+    /* ===================================================
+       4. 本地科學概念評估引擎
+       =================================================== */
+    function evaluateStudentText(text) {
+      const lower = text.toLowerCase();
+      const matched = [];
+      const missing = [];
+
+      KEY_CONCEPTS.forEach(c => {
+        const found = c.keywords.some(kw => lower.includes(kw.toLowerCase()));
+        if (found) {
+          matched.push(c);
+        } else {
+          missing.push(c);
+        }
+      });
+
+      const wordCount = text.trim().length;
+      let stars = 1;
+
+      // 嚴謹分級
+      if (matched.length >= 5 && wordCount >= 28) {
+        stars = 5;
+      } else if (matched.length >= 4 && wordCount >= 22) {
+        stars = 4;
+      } else if (matched.length >= 3 && wordCount >= 16) {
+        stars = 3;
+      } else if (matched.length >= 2 || wordCount >= 10) {
+        stars = 2;
+      } else {
+        stars = 1;
+      }
+
+      let summary = "";
+      if (stars === 5) {
+        summary = "太完美了！🌟 你完整掌握了「堅硬外殼蓄壓」、「內部水分氣化」、「高溫高壓」、「澱粉糊化」以及「爆開瞬間降壓冷卻固化」的完整科學鏈！具備小小物理化學家水準！";
+      } else if (stars === 4) {
+        summary = "非常出色！👏 你的科學因果推論很完整，核心概念幾乎都提到了，距離 5 星大滿貫只差一點點關鍵細節囉！";
+      } else if (stars === 3) {
+        summary = "表現不錯！👍 你已經抓到爆米花爆裂的基本原因（如水分與加熱），但還能更深入說明外殼耐壓與澱粉變化的機制喔！";
+      } else if (stars === 2) {
+        summary = "加油！💡 你已經邁出了探究的第一步，但目前的說明較為簡略，許多關鍵的物理與相變過程還沒有清楚表達。";
+      } else {
+        summary = "這是一個好的嘗試！🌱 但內容似乎缺少關鍵要素。請參考右側規準，試著重新組織文字再次挑戰！";
+      }
+
+      return { stars, matched, missing, summary, wordCount };
+    }
+
+    /* ===================================================
+       5. 更新右側規準面版
+       =================================================== */
+    function updateRubricsDisplay(evalResult) {
+      const badge = document.getElementById('star-display-badge');
+      const starText = '★'.repeat(evalResult.stars) + '☆'.repeat(5 - evalResult.stars);
+      badge.textContent = `${evalResult.stars} 顆星 (${starText})`;
+      badge.className = evalResult.stars === 5 
+        ? 'text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800' 
+        : 'text-xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800';
+
+      // 頂部小徽章
+      const topBadge = document.getElementById('chat-header-star-badge');
+      const topStars = document.getElementById('chat-header-stars');
+      topBadge.classList.remove('hidden');
+      topBadge.classList.add('flex');
+      topStars.textContent = starText;
+
+      KEY_CONCEPTS.forEach(c => {
+        const el = document.getElementById(c.domId);
+        const isMatched = evalResult.matched.some(m => m.id === c.id);
+        const icon = el.querySelector('.icon');
+        const statusBadge = el.querySelector('.badge');
+
+        if (isMatched) {
+          el.className = 'p-2.5 rounded-xl border border-emerald-300 bg-emerald-50/70 text-emerald-950 transition-all';
+          icon.textContent = '✅';
+          statusBadge.textContent = '已達成';
+          statusBadge.className = 'badge text-[10px] px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900 font-bold font-mono';
+        } else {
+          el.className = 'p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all';
+          icon.textContent = '⚪';
+          statusBadge.textContent = '未達成';
+          statusBadge.className = 'badge text-[10px] px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 font-mono';
+        }
+      });
+    }
+
+    /* ===================================================
+       6. 處理使用者送出文字檢核 (可串接 Gemini API，並具備穩定退撫)
+       =================================================== */
+    async function handleChatSubmit(e) {
+      if (e) e.preventDefault();
+      if (isEvaluating) return;
+
+      const inputEl = document.getElementById('student-input');
+      const text = inputEl.value.trim();
+      if (!text) return;
+
+      inputEl.value = '';
+
+      // 1. 渲染使用者發言
+      appendChatMessage('user', text);
+
+      // 2. 本地評估
+      const localEval = evaluateStudentText(text);
+      updateRubricsDisplay(localEval);
+
+      // 3. 顯示機器人思考中動畫
+      isEvaluating = true;
+      const loadingMsgId = appendLoadingIndicator();
+
+      // 4. 嘗試連線 Gemini 獲取自然反饋，若無 API Key 則無縫使用本地評估
+      let aiFeedback = "";
+      try {
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+        const prompt = `學生正在用自己的話解釋「爆米花原理」，學生回答是：「${text}」。
+請以熱忱、啟發性的國中自然科學教師口吻給予繁體中文簡要評語（100字內）：
+1. 肯定回答中正確提及的概念（如：水分汽化、硬種皮耐壓蓄壓、澱粉糊化噴發與降壓冷卻固化）。
+2. 親切點出尚未說明或能更精確補充的部分。語氣正向有活力。`;
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            systemInstruction: {
+              parts: [{ text: "你是一位充滿熱忱與啟發性的科學探究教師。" }]
+            }
+          })
+        });
+
+        if (response.ok) {
+          const resJson = await response.json();
+          aiFeedback = resJson?.candidates?.[0]?.content?.parts?.[0]?.text;
+        }
+      } catch (err) {
+        // Fallback silently
+      }
+
+      removeLoadingIndicator(loadingMsgId);
+      isEvaluating = false;
+
+      // 5. 組合最終機器人評鑑訊息卡片
+      const finalComment = aiFeedback || localEval.summary;
+      appendBotReviewCard(localEval, finalComment);
+    }
+
+    function appendChatMessage(sender, text) {
+      const container = document.getElementById('chat-messages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'} animate-fadeIn`;
+
+      if (sender === 'user') {
+        msgDiv.innerHTML = `
+          <div class="max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm bg-amber-600 text-white rounded-tr-none">
+            ${escapeHtml(text)}
+          </div>
+        `;
+      }
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function appendLoadingIndicator() {
+      const container = document.getElementById('chat-messages');
+      const id = 'loading-' + Date.now();
+      const div = document.createElement('div');
+      div.id = id;
+      div.className = 'flex justify-start items-center gap-2 text-slate-500 text-xs italic py-1';
+      div.innerHTML = `
+        <div class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping ml-3 mr-1"></div>
+        爆米花導師正在分析你的科學概念中...
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      return id;
+    }
+
+    function removeLoadingIndicator(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    function appendBotReviewCard(evalResult, commentText) {
+      const container = document.getElementById('chat-messages');
+      const card = document.createElement('div');
+      card.className = 'flex justify-start animate-fadeIn';
+
+      const starsString = '★'.repeat(evalResult.stars) + '☆'.repeat(5 - evalResult.stars);
+
+      let conceptsBadges = '';
+      KEY_CONCEPTS.forEach(c => {
+        const matched = evalResult.matched.some(m => m.id === c.id);
+        conceptsBadges += `
+          <span class="px-2 py-0.5 rounded-md text-[11px] font-medium ${
+            matched 
+              ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' 
+              : 'bg-rose-50 text-rose-700 border border-rose-200'
+          }">
+            ${matched ? '✓' : '✗'} ${c.name}
+          </span>
+        `;
+      });
+
+      let nextActionHtml = '';
+      if (evalResult.stars < 5) {
+        let missingAdviceList = evalResult.missing.map(m => `<li>${m.advice}</li>`).join('');
+        nextActionHtml = `
+          <div class="bg-amber-50/90 border border-amber-200 rounded-xl p-3 text-xs text-amber-950 mt-2 space-y-1.5">
+            <div class="font-bold flex items-center gap-1 text-amber-900">
+              <span>💡</span> 衝刺 5 顆星關鍵指引建議：
+            </div>
+            <ul class="list-disc pl-4 space-y-1 text-slate-700 text-[11px] leading-relaxed">
+              ${missingAdviceList}
+            </ul>
+            <div class="pt-2 flex flex-wrap items-center gap-2">
+              <span class="text-[11px] text-slate-600 font-medium">你可以重新打字修正，或直接挑戰測驗：</span>
+              <button onclick="switchTab('quiz')" class="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold transition-all shadow-xs flex items-center gap-1">
+                進入第二關測驗 ➔
+              </button>
+            </div>
+          </div>
+        `;
+      } else {
+        nextActionHtml = `
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-950 mt-2 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">👑</span>
+              <span class="font-bold">恭喜達成 5 顆星大滿貫！你已具備扎實完整的爆米花科學觀念。</span>
+            </div>
+            <button onclick="switchTab('quiz')" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-all shadow-xs flex items-center gap-1">
+              馬上開始測驗 ➔
+            </button>
+          </div>
+        `;
+      }
+
+      card.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mr-2 shrink-0 mt-1 shadow-sm">
+          🤖
+        </div>
+        <div class="max-w-[85%] rounded-2xl p-4 text-sm leading-relaxed shadow-sm bg-white border border-slate-200 text-slate-800 rounded-tl-none space-y-3">
+          <p class="whitespace-pre-line text-slate-800">${escapeHtml(commentText)}</p>
+
+          <div class="pt-2 border-t border-slate-100 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-600">概念完整度星等：</span>
+              <span class="text-amber-500 font-bold text-sm tracking-wide">${starsString} (${evalResult.stars} / 5)</span>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] font-bold text-slate-500">關鍵要素檢測：</div>
+              <div class="flex flex-wrap gap-1.5">${conceptsBadges}</div>
+            </div>
+
+            ${nextActionHtml}
+          </div>
+        </div>
+      `;
+
+      container.appendChild(card);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    /* ===================================================
+       7. 迷思概念測驗邏輯 (隨機抽取4題、字數平衡、百分比)
+       =================================================== */
+    function regenerateQuiz() {
+      // 1. 洗牌並精確挑選 4 題
+      const shuffled = [...QUESTION_BANK].sort(() => 0.5 - Math.random());
+      currentQuizList = shuffled.slice(0, 4);
+      userQuizAnswers = {};
+      isQuizSubmitted = false;
+
+      // 2. 恢復交卷區域
+      document.getElementById('quiz-unsubmitted').classList.remove('hidden');
+      document.getElementById('quiz-submitted-view').classList.add('hidden');
+      updateQuizProgress();
+
+      // 3. 渲染題目
+      renderQuizQuestions();
+    }
+
+    function renderQuizQuestions() {
+      const container = document.getElementById('quiz-container');
+      container.innerHTML = '';
+
+      currentQuizList.forEach((q, qIdx) => {
+        const qCard = document.createElement('div');
+        qCard.id = `quiz-card-${qIdx}`;
+        qCard.className = 'bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition-all';
+
+        let optionsHtml = '';
+        q.options.forEach((opt, optIdx) => {
+          const isSelected = userQuizAnswers[qIdx] === optIdx;
+          const letter = String.fromCharCode(65 + optIdx);
+
+          let optionStyle = 'border-slate-200 hover:border-amber-400 bg-slate-50/50 text-slate-700';
+
+          if (isQuizSubmitted) {
+            if (opt.isCorrect) {
+              optionStyle = 'border-emerald-500 bg-emerald-50 text-emerald-950 font-bold ring-2 ring-emerald-400';
+            } else if (isSelected && !opt.isCorrect) {
+              optionStyle = 'border-rose-400 bg-rose-50 text-rose-900 font-medium ring-1 ring-rose-400';
+            } else {
+              optionStyle = 'border-slate-200 bg-slate-50 text-slate-400 opacity-60';
+            }
+          } else if (isSelected) {
+            optionStyle = 'border-amber-600 bg-amber-50 text-amber-900 font-bold ring-2 ring-amber-500';
+          }
+
+          optionsHtml += `
+            <button
+              type="button"
+              onclick="selectQuizOption(${qIdx}, ${optIdx})"
+              ${isQuizSubmitted ? 'disabled' : ''}
+              class="p-3 rounded-xl border text-left text-xs sm:text-sm flex items-start gap-2.5 transition-all ${optionStyle}"
+            >
+              <span class="w-5 h-5 rounded-full border flex items-center justify-center text-xs shrink-0 mt-0.5 ${
+                isSelected ? 'bg-amber-600 text-white border-amber-600 font-bold' : 'border-slate-300 bg-white text-slate-600'
+              }">
+                ${letter}
+              </span>
+              <span class="flex-1 leading-relaxed">${escapeHtml(opt.text)}</span>
+            </button>
+          `;
+        });
+
+        // 迷思解析區塊
+        let misconceptionHtml = '';
+        if (isQuizSubmitted) {
+          const chosen = userQuizAnswers[qIdx];
+          const isCorrect = chosen !== undefined && q.options[chosen].isCorrect;
+          misconceptionHtml = `
+            <div class="mt-4 p-3.5 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-slate-700 leading-relaxed animate-fadeIn">
+              <div class="font-bold text-amber-900 flex items-center gap-1.5 mb-1">
+                <span>⚠️</span> 觀念透視與迷思澄清：
+              </div>
+              <p class="text-slate-700 pl-5">${q.misconception}</p>
+            </div>
+          `;
+        }
+
+        // 題目頂端狀態
+        let statusTag = '';
+        if (isQuizSubmitted) {
+          const chosen = userQuizAnswers[qIdx];
+          const isCorrect = chosen !== undefined && q.options[chosen].isCorrect;
+          statusTag = isCorrect
+            ? `<span class="flex items-center gap-1 text-emerald-600 text-xs font-bold bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">✅ 答對了！</span>`
+            : `<span class="flex items-center gap-1 text-rose-600 text-xs font-bold bg-rose-50 px-2.5 py-1 rounded-full border border-rose-200">❌ 發現迷思</span>`;
+        }
+
+        qCard.innerHTML = `
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-amber-600 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                ${qIdx + 1}
+              </span>
+              <span class="text-xs font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                ${q.title}
+              </span>
+            </div>
+            <div>${statusTag}</div>
+          </div>
+
+          <h4 class="font-semibold text-slate-800 text-sm sm:text-base leading-snug mb-4">
+            ${escapeHtml(q.question)}
+          </h4>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+            ${optionsHtml}
+          </div>
+
+          ${misconceptionHtml}
+        `;
+
+        container.appendChild(qCard);
+      });
+    }
+
+    function selectQuizOption(qIdx, optIdx) {
+      if (isQuizSubmitted) return;
+      userQuizAnswers[qIdx] = optIdx;
+      updateQuizProgress();
+      renderQuizQuestions();
+    }
+
+    function updateQuizProgress() {
+      const answeredCount = Object.keys(userQuizAnswers).length;
+      const total = currentQuizList.length;
+      const progressText = document.getElementById('quiz-progress-text');
+      const submitBtn = document.getElementById('quiz-submit-btn');
+
+      progressText.textContent = `作答進度：${answeredCount} / ${total} 題`;
+
+      if (answeredCount === total) {
+        submitBtn.disabled = false;
+        submitBtn.className = 'w-full py-3 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white cursor-pointer transform hover:scale-[1.01]';
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.className = 'w-full py-3 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 bg-slate-200 text-slate-400 cursor-not-allowed';
+      }
+    }
+
+    function submitQuiz() {
+      if (Object.keys(userQuizAnswers).length < currentQuizList.length) return;
+
+      isQuizSubmitted = true;
+      let correctCount = 0;
+
+      currentQuizList.forEach((q, idx) => {
+        const choice = userQuizAnswers[idx];
+        if (choice !== undefined && q.options[choice].isCorrect) {
+          correctCount++;
+        }
+      });
+
+      const percentage = Math.round((correctCount / currentQuizList.length) * 100);
+
+      // 切換結果顯示
+      document.getElementById('quiz-unsubmitted').classList.add('hidden');
+      const resultView = document.getElementById('quiz-submitted-view');
+      resultView.classList.remove('hidden');
+
+      document.getElementById('quiz-score-circle').textContent = `${percentage}%`;
+      document.getElementById('quiz-score-text').textContent = `${percentage}%`;
+      document.getElementById('quiz-detail-counts').textContent = `共答對 ${correctCount} / ${currentQuizList.length} 題`;
+
+      // 產生階梯式溫暖激勵評語
+      const banner = document.getElementById('quiz-praise-banner');
+      if (percentage === 100) {
+        banner.className = 'p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-950 text-xs sm:text-sm';
+        banner.innerHTML = `
+          <div class="flex items-start gap-2.5">
+            <span class="text-2xl">👑</span>
+            <div>
+              <strong class="block font-bold mb-1 text-emerald-900 text-sm">特級爆米花科學大師！滿分大滿貫！</strong>
+              太不可思議了！你徹底識破了所有精心設計的誘答陷阱，精準掌握了堅硬外殼耐壓、高溫水蒸氣蓄壓與澱粉糊化噴發的全部物理化學機制！
+            </div>
+          </div>
+        `;
+      } else if (percentage === 75) {
+        banner.className = 'p-4 rounded-xl border border-blue-200 bg-blue-50 text-blue-950 text-xs sm:text-sm';
+        banner.innerHTML = `
+          <div class="flex items-start gap-2.5">
+            <span class="text-2xl">🌟</span>
+            <div>
+              <strong class="block font-bold mb-1 text-blue-900 text-sm">非常優異！科學觀念相當扎實！</strong>
+              你答對了 75% 的題目！僅有極少數的日常直覺落入了誘答陷阱。閱讀上方每道題的「迷思澄清」解析，下一次必定能勇奪 100% 滿分！
+            </div>
+          </div>
+        `;
+      } else if (percentage === 50) {
+        banner.className = 'p-4 rounded-xl border border-amber-200 bg-amber-50 text-amber-950 text-xs sm:text-sm';
+        banner.innerHTML = `
+          <div class="flex items-start gap-2.5">
+            <span class="text-2xl">💡</span>
+            <div>
+              <strong class="block font-bold mb-1 text-amber-900 text-sm">很棒的嘗試！迷思觀念正在突破中！</strong>
+              這些題目具有很高的誘答力，答錯正是最有價值的學習起點！請仔細閱讀上方題目附帶的迷思澄清，點擊下方「重新抽取」隨時再次挑戰！
+            </div>
+          </div>
+        `;
+      } else {
+        banner.className = 'p-4 rounded-xl border border-rose-200 bg-rose-50 text-rose-950 text-xs sm:text-sm';
+        banner.innerHTML = `
+          <div class="flex items-start gap-2.5">
+            <span class="text-2xl">🌱</span>
+            <div>
+              <strong class="block font-bold mb-1 text-rose-900 text-sm">不要氣餒！科學探究就是從破除迷思開始！</strong>
+              許多日常對爆米花的直覺想像（例如以為只是空氣膨脹或油脂燃燒）都是非常普遍的誤解。仔細看看上方的科學解析，再抽一輪題目挑戰自己！
+            </div>
+          </div>
+        `;
+      }
+
+      // 重新渲染題目卡片以顯示正確答案與解析
+      renderQuizQuestions();
+    }
+
+    // 輔助函式：跳脫 HTML 字元以策安全
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    window.onload = function() {
+      // 預設抽取第一輪測驗 4 題
+      regenerateQuiz();
+    };
+  </script>
+</body>
+</html>
